@@ -1,0 +1,55 @@
+name: LittleFS Host Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ci host tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc cmake gcovr
+
+      - name: Configure
+        working-directory: test
+        run: |
+          cmake -S . -B build
+
+      - name: Build
+        working-directory: test
+        run: |
+          cmake --build build -j "$(nproc)"
+
+      - name: Run tests
+        working-directory: test/build
+        run: |
+          ctest --output-on-failure
+
+      - name: Coverage (optional)
+        if: always()
+        working-directory: test/build
+        run: |
+          mkdir -p coverage
+          gcovr --root ../.. --exclude ".*Unity.*" \
+            --xml -o coverage/coverage.xml \
+            --html --html-details -o coverage/coverage_report.html \
+            . || echo "coverage skipped"
+
+      - name: Upload coverage HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: test/build/coverage
+          if-no-files-found: ignore

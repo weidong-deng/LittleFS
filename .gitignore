@@ -1,0 +1,108 @@
+# ============================================================
+# test_ci .gitignore
+# 忽略本地/CI 编译产物，保留工程文件与源码
+# ============================================================
+
+# --- Host 测试 (test/ CMake + Makefile + build.sh/bat) ---
+test/build/
+test/coverage/
+**/coverage_report/
+**/coverage/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+_deps/
+cmake-build-*/
+
+# gcov / gcovr
+*.gcda
+*.gcno
+*.gcov
+*.gcov.json
+*.info
+
+# 编译/链接中间文件与可执行文件
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.exe
+*.out
+*.app
+*.elf
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.d
+*.crf
+*.lnp
+*.dep
+*.pdb
+*.ilk
+*.exp
+*.su
+*.i
+
+# --- Keil MDK (Example/*/Project/MDK) ---
+**/Project/MDK/Objects/
+**/Project/MDK/Listings/
+**/Project/MDK/DebugConfig/
+*.uvguix*
+*.uvoptx
+*.uvopt
+*.bak
+*.build_log.htm
+*.htm
+!**/readme.md
+JLinkLog.txt
+*.sct.bak
+
+# --- IAR EWARM (Example/*/Project/IAR) ---
+**/Project/IAR/Debug/
+**/Project/IAR/Release/
+**/Project/IAR/settings/
+*.ewd
+*.ewt
+BrowseInfo/
+
+# --- Eclipse / GCC ARM (Example/*/Project/Eclipse) ---
+**/Project/Eclipse/Debug/
+**/Project/Eclipse/Release/
+.metadata/
+*.launch
+
+# 通用构建目录名
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+[Oo]ut/
+[Oo]utput/
+[Oo]bjects/
+[Ll]istings/
+
+# --- 编辑器 / IDE / OS ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 日志与临时文件
+*.log
+*.tmp
+*.temp
+*.cache
