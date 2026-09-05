@@ -16,8 +16,8 @@ This project ports [LittleFS](https://github.com/littlefs-project/littlefs) — 
 
 | MCU | Status | Notes |
 | --- | :----: | ----- |
-| APM32F103VB | ✅ | Internal Flash + SPI Flash |
-| APM32F107VC | ✅ | Internal Flash + SPI Flash |
+| APM32F103 | ✅ | Internal Flash + SPI Flash |
+| APM32F107 | ✅ | Internal Flash + SPI Flash |
 
 ## Project Structure
 
